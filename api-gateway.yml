@@ -17,10 +17,26 @@ spring:
           predicates:
             - Path=/api/users/**
         
+	 # USER ACTUATOR
+        - id: user-actuator
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/actuator/**
+          filters:
+            - StripPrefix=2
+
         - id: auth-service
           uri: lb://AUTH-SERVICE
           predicates:
             - Path=/auth/**
+
+        # AUTH ACTUATOR
+        - id: auth-actuator
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/auth/actuator/**
+          filters:
+            - StripPrefix=1
 
 eureka:
   client:
