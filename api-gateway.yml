@@ -17,7 +17,7 @@ spring:
           predicates:
             - Path=/api/users/**
         
-	 # USER ACTUATOR
+	     # USER ACTUATOR
         - id: user-actuator
           uri: lb://USER-SERVICE
           predicates:
