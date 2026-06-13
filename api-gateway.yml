@@ -16,8 +16,8 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/users/**
-        
-	     # USER ACTUATOR
+
+        # USER ACTUATOR
         - id: user-actuator
           uri: lb://USER-SERVICE
           predicates:
@@ -42,6 +42,7 @@ eureka:
   client:
     service-url:
       defaultZone: http://eureka-server:8761/eureka/
+
 jwt:
   secret: Ws1KXK81j83IDS/tqc7jS0Y3NDKHKOkc9CIEXEy1wAs=
   expiration: 3600000
