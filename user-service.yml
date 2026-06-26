@@ -1,0 +1,66 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: user-service
+
+  datasource:
+    url: jdbc:postgresql://postgres:5432/crud?currentSchema=user_schema
+    username: postgres
+    password: Ranjith@02
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
+      hibernate:
+        default_schema: user_schema
+        jdbc:
+          batch_size: 30
+          time_zone: Asia/Kolkata
+        order_inserts: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+
+    register-with-eureka: true
+    fetch-registry: true
+
+management:
+  endpoint:
+    health:
+      show-details: always
+
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+logging:
+  file:
+    path: logs
+    name: user-service.log
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} %-5level [%thread] %logger{36} - %msg%n"
+
+  level:
+    root: INFO
+    com:
+      ranjith:
+        product: DEBUG
